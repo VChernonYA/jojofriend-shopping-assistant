@@ -34306,6 +34306,32 @@ if (!self.document) {
       }
     };
 
+    /**
+     * Clear toolbar badge for a tab.
+     * @param {number} tabId - Target tab ID
+     */
+    const clearTabBadge = (tabId) => {
+      if (!tabId) {
+        return;
+      }
+
+      stopIconAnimation();
+      apiAction.setBadgeText({ tabId, text: "" });
+    };
+
+    /**
+     * Sync toolbar badge/icon when a tab navigates to an unsupported URL.
+     * @param {number} tabId - Target tab ID
+     * @param {string} url - Tab URL
+     */
+    const syncTabToolbarForUrl = (tabId, url) => {
+      if (!tabId || !url || isUrlSupported(url)) {
+        return;
+      }
+
+      updateIconUnavailable(tabId);
+    };
+
     const setupBrowserListeners = () => {
       $.api.runtime.onInstalled.addListener((details) => {
         callOnInstalledCallback(details);
@@ -34316,7 +34342,13 @@ if (!self.document) {
         $.api.tabs.onActivated.addListener(() => {
           $.api.tabs.query({ active: true, currentWindow: true }).then(() => {});
         });
-        $.api.tabs.onUpdated.addListener(() => {
+        $.api.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+          if (changeInfo.url) {
+            syncTabToolbarForUrl(tabId, changeInfo.url);
+          } else if (changeInfo.status === "complete" && tab?.url) {
+            syncTabToolbarForUrl(tabId, tab.url);
+          }
+
           $.api.tabs.query({ active: true, currentWindow: true }).then(() => {});
         });
       }
@@ -34379,6 +34411,10 @@ if (!self.document) {
      * @param {number} [tabId] - Optional tab ID to update specific tab icon
      */
     const updateIconUnavailable = (tabId) => {
+      if (tabId) {
+        clearTabBadge(tabId);
+      }
+
       const iconData = generateIcons("unavailable");
       if (tabId) {
         apiAction.setIcon({ path: iconData.path, tabId });
@@ -34457,10 +34493,15 @@ if (!self.document) {
       }
 
       const { text, toolbarIconFlash } = value;
-      apiAction.setBadgeText({ tabId, text });
-      apiAction.setBadgeBackgroundColor({ tabId, color: "#F9EDE5" });
 
-      if (toolbarIconFlash) {
+      if (!text) {
+        clearTabBadge(tabId);
+      } else {
+        apiAction.setBadgeText({ tabId, text });
+        apiAction.setBadgeBackgroundColor({ tabId, color: "#F9EDE5" });
+      }
+
+      if (toolbarIconFlash && text) {
         startIconAnimation(tabId);
       }
     };

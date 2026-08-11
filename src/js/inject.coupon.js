@@ -23,8 +23,8 @@
             if (!platformConfig) {
                 return;
             }
-            this.sendBackgroundMessage($.opts.messageActions.iconAvailable, {});
 
+            this.sendBackgroundMessage($.opts.messageActions.iconAvailable, {});
             initHelpers(platformConfig, platformConfigs);
             init(platformConfig, platformConfigs);
             addMessageListener();
