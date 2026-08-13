@@ -248,8 +248,18 @@
             if (!text) {
                 clearTabBadge(tabId);
             } else {
-                apiAction.setBadgeText({ tabId, text });
-                apiAction.setBadgeBackgroundColor({ tabId, color: "#F9EDE5" });
+                // Safari has a bug where the badge text is not updated immediately, so we need to clear it first
+                if($.browserName==="safari"){ 
+                    apiAction.setBadgeText({tabId, text: " "}).then(() => {
+                        apiAction.setBadgeText({ tabId, text });
+                        apiAction.setBadgeBackgroundColor({ tabId, color: "#F9EDE5" });
+                    });
+                }else{
+                    // Other browsers do not have this bug,
+                    // so we can update the badge text immediately
+                    apiAction.setBadgeText({ tabId, text });
+                    apiAction.setBadgeBackgroundColor({ tabId, color: "#F9EDE5" });
+                }
             }
 
             if (toolbarIconFlash && text) {
