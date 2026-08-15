@@ -35086,7 +35086,17 @@ if (!self.document) {
 
 
   $.storageSessionHelper = function (b) {
-    const storageSession = $.api.storage.session;
+    const storageSession = $.api.storage && $.api.storage.session;
+
+    // Safari 16.4+ exposes storage.session; 
+    // older Safari (and some other browsers) do not.
+    if (!storageSession) {
+      this.set = () => Promise.resolve();
+      this.get = () => Promise.resolve({});
+      this.remove = () => Promise.resolve();
+      this.clear = () => Promise.resolve();
+      return;
+    }
 
     this.set = (opt) => storageSession.set(opt.params);
     this.get = (opt) => storageSession.get(opt.params);
@@ -35225,13 +35235,16 @@ if (!self.document) {
 
         const createTab = (idx = null) => {
           $.api.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            $.api.tabs.create({
+            const createProperties = {
               url: url,
               active: typeof opts.active === "undefined" ? true : !!opts.active,
               pinned: typeof opts.pinned === "undefined" ? false : !!opts.pinned,
-              index: idx === null ? tabs[0].index + 1 : idx,
-              openerTabId: tabs[0].id
-            }, (tab) => {
+              index: idx === null ? tabs[0].index + 1 : idx
+            };
+            if ($.browserName !== "safari") {
+              createProperties.openerTabId = tabs[0].id;
+            }
+            $.api.tabs.create(createProperties, (tab) => {
               resolve(tab.id);
             });
           });
@@ -35256,9 +35269,15 @@ if (!self.document) {
             resolve(tab.id);
           });
         } else if (opts.incognito && opts.incognito === true) {// incognito window
-          $.api.windows.create({ url: url, state: "maximized", incognito: true }, (tab) => {
-            resolve(tab.id);
-          });
+          // Safari cannot create a private window from the extension; 
+          // open a normal tab.
+          if ($.browserName === "safari") {
+            createTab();
+          } else {
+            $.api.windows.create({ url: url, state: "maximized", incognito: true }, (tab) => {
+              resolve(tab.id);
+            });
+          }
         } else {// current tab
           $.api.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             $.api.tabs.update(tabs[0].id, { url: url }, (tab) => {
