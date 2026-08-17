@@ -262,9 +262,46 @@
         }, "Created zip file from dist directory");
     };
 
+    /**
+     * Safari decodes extension scripts as Latin-1 unless a UTF-8 BOM is present.
+     * Prepend BOM to copied JS so non-ASCII string literals (e.g. language labels) stay intact.
+     *
+     * @param {string} safariResourcesDir
+     */
+    const addUtf8BomToSafariScripts = (safariResourcesDir) => {
+        const fs = require("fs");
+        const pathModule = require("path");
+        const bom = Buffer.from([0xEF, 0xBB, 0xBF]);
+
+        const walkJs = (dir) => {
+            const files = [];
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+                const full = pathModule.join(dir, entry.name);
+                if (entry.isDirectory()) {
+                    files.push(...walkJs(full));
+                } else if (entry.name.endsWith(".js")) {
+                    files.push(full);
+                }
+            }
+            return files;
+        };
+
+        for (const file of walkJs(safariResourcesDir)) {
+            const data = fs.readFileSync(file);
+            if (data.length >= 3 && data[0] === 0xEF && data[1] === 0xBB && data[2] === 0xBF) {
+                continue;
+            }
+            fs.writeFileSync(file, Buffer.concat([bom, data]));
+        }
+    };
+
     const safari = () =>{
         return Func.measureTime((resolve) => {
-            Func.powerfulCopy(path.dist, "safari_extension/jojofriend/jojofriend Extension/Resources").then(resolve);
+            const safariResources = "safari_extension/jojofriend/jojofriend Extension/Resources";
+            Func.powerfulCopy(path.dist, safariResources).then(() => {
+                addUtf8BomToSafariScripts(safariResources);
+                resolve();
+            });
         }, "copy to safari project successfully");
     }
     

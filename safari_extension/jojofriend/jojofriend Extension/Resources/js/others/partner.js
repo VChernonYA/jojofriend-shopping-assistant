@@ -1,4 +1,4 @@
-/**
+﻿/**
  * jsu - Javascript Utilities
  */
 (() => {

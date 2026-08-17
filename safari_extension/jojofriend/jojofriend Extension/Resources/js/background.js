@@ -1,4 +1,4 @@
-if (!self.window) {// required for jsu
+﻿if (!self.window) {// required for jsu
   self.window = self;
 }
 if (!self.document) {
