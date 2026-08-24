@@ -55,7 +55,7 @@
 
                 ext.logger("info", "EbayHelper", "detailAnalyze", "coupon insert: element", element);
                 if(element){
-                    couponResult = {"element":element, "html":html, "templateId":templateId, "distinguish":distinguish, "hint":hint, "mid":mid}
+                    couponResult = {"element":element, "html":html, "templateId":templateId, "distinguish":distinguish, "hint":hint, "mid":mid, "handler":handler}
                 }
             }
         
@@ -85,7 +85,7 @@
             
                 ext.logger("info", "EbayHelper", "detailAnalyze", "qrcode insert: element", element);
                 if(element && qrcodeData){
-                    qrcodeResult = {"element":element, "html":html, "canvasId":canvasId, "qrcodeData":qrcodeData, "distinguish":distinguish}
+                    qrcodeResult = {"element":element, "html":html, "canvasId":canvasId, "qrcodeData":qrcodeData, "distinguish":distinguish, "handler":handler}
                 }
             }
         
@@ -104,7 +104,12 @@
         };
 
         this.detailCouponAnalyze = function(result){
-            const {element, html, templateId, hint, mid} = result;
+            const {html, templateId, hint, mid, handler} = result;
+            const element = $.getLiveElement(result.element, handler);
+            if(!element){
+                return;
+            }
+            result.element = element;
         
             element.insertAdjacentHTML('afterend', html);
             const templateIdEle = document.querySelector("div[id='"+templateId+"']");
@@ -136,7 +141,12 @@
         };
 
         this.detailMscanAnalyze = function(result){
-            const {element, html, qrcodeData, canvasId} = result;
+            const {html, qrcodeData, canvasId, handler} = result;
+            const element = $.getLiveElement(result.element, handler);
+            if(!element){
+                return;
+            }
+            result.element = element;
         
             element.insertAdjacentHTML('afterend', html);
             if(!!qrcodeData && qrcodeData.code==="success" && !!qrcodeData.result){

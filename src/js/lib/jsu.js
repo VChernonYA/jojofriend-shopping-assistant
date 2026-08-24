@@ -216,6 +216,28 @@
                     }
                 }, 2000);
             });
+        },
+
+        getElementByHandler:function(handler){
+            if(!handler) return null;
+            const names = String(handler).split("@").filter((s) => s.length);
+            for(let i=0; i<names.length; i++){
+                const eleName = names[i];
+                if(eleName === "body") return document.body;
+                if(eleName === "html") return document.documentElement;
+                const el = document.body ? document.body.querySelector(eleName) : document.querySelector(eleName);
+                if(el) return el;
+            }
+            return null;
+        },
+
+        elementInContainer:function(container, element) {
+            return container.contains(element);
+        },
+
+        getLiveElement:function(element, handler){
+            if(element && this.elementInContainer(document, element)) return element;
+            return this.getElementByHandler(handler);
         }
     };
 

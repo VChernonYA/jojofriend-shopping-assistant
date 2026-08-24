@@ -216,6 +216,28 @@
           }
         }, 2000);
       });
+    },
+
+    getElementByHandler: function (handler) {
+      if (!handler) return null;
+      const names = String(handler).split("@").filter((s) => s.length);
+      for (let i = 0; i < names.length; i++) {
+        const eleName = names[i];
+        if (eleName === "body") return document.body;
+        if (eleName === "html") return document.documentElement;
+        const el = document.body ? document.body.querySelector(eleName) : document.querySelector(eleName);
+        if (el) return el;
+      }
+      return null;
+    },
+
+    elementInContainer: function (container, element) {
+      return container.contains(element);
+    },
+
+    getLiveElement: function (element, handler) {
+      if (element && this.elementInContainer(document, element)) return element;
+      return this.getElementByHandler(handler);
     }
   };
 
@@ -36120,7 +36142,7 @@
 
           ext.logger("info", "AliexpressHelper", "detailAnalyze", "coupon insert: element", element);
           if (element) {
-            couponResult = { "element": element, "html": html, "templateId": templateId, "distinguish": distinguish, "hint": hint };
+            couponResult = { "element": element, "html": html, "templateId": templateId, "distinguish": distinguish, "hint": hint, "handler": handler };
           }
         }
 
@@ -36153,7 +36175,7 @@
 
           ext.logger("info", "AliexpressHelper", "detailAnalyze", "qrcode insert: element", element);
           if (element && qrcodeData) {
-            qrcodeResult = { "element": element, "html": html, "canvasId": canvasId, "qrcodeData": qrcodeData, "distinguish": distinguish };
+            qrcodeResult = { "element": element, "html": html, "canvasId": canvasId, "qrcodeData": qrcodeData, "distinguish": distinguish, "handler": handler };
           }
         }
 
@@ -36180,7 +36202,12 @@
 
 
     this.detailCouponAnalyze = (result) => {
-      const { element, html, templateId, hint } = result;
+      const { html, templateId, hint, handler } = result;
+      const element = $.getLiveElement(result.element, handler);
+      if (!element) {
+        return;
+      }
+      result.element = element;
 
       element.insertAdjacentHTML('afterend', html);
       const templateIdEle = document.querySelector("div[id='" + templateId + "']");
@@ -36198,7 +36225,12 @@
     };
 
     this.detailMscanAnalyze = (result) => {
-      const { element, html, qrcodeData, canvasId } = result;
+      const { html, qrcodeData, canvasId, handler } = result;
+      const element = $.getLiveElement(result.element, handler);
+      if (!element) {
+        return;
+      }
+      result.element = element;
 
       element.insertAdjacentHTML('afterend', html);
       if (!!qrcodeData && qrcodeData.code === "success" && !!qrcodeData.result) {
@@ -36265,11 +36297,14 @@
       ext.logger("info", "AliexpressHelper", "tradeAnalyze", "insert: element", element);
 
       ext.helper.util.loopTask(() => {
-        if (!element) {
-          return;
-        }
         ext.helper.util.distinguishRemoveAndTry(distinguish, () => {
-          element.insertAdjacentHTML('afterend', html);
+          const liveElement = $.getLiveElement(element, handler);
+          if (!liveElement) {
+            return;
+          }
+          element = liveElement;
+
+          liveElement.insertAdjacentHTML('afterend', html);
           const templateIdEle = document.querySelector("#" + templateId + ">.item");
           if (templateIdEle) {
             const promoCode = ext.helper.util.decryptStr(templateIdEle.querySelector(".copy").getAttribute("data-encryptcode"));
@@ -36750,7 +36785,9 @@
 
         ext.logger("info", "BanggoodHelper", "detailAnalyze", "coupon insert: element", element);
         if (element) {
-          couponResult = { "element": element, "html": html, "templateId": templateId, "distinguish": distinguish, "hint": hint, "mid": mid };
+          couponResult = { "element": element, "html": html, "templateId": templateId, "distinguish": distinguish, "hint": hint, "mid": mid,
+            "handler": handler
+          };
         }
       }
       if (!!mscan) {
@@ -36779,7 +36816,7 @@
 
         ext.logger("info", "BanggoodHelper", "detailAnalyze", "qrcode insert: element", element);
         if (element && qrcodeData) {
-          qrcodeResult = { "element": element, "html": html, "canvasId": canvasId, "qrcodeData": qrcodeData, "distinguish": distinguish };
+          qrcodeResult = { "element": element, "html": html, "canvasId": canvasId, "qrcodeData": qrcodeData, "distinguish": distinguish, "handler": handler };
         }
       }
 
@@ -36798,7 +36835,12 @@
     };
 
     this.detailCouponAnalyze = function (result) {
-      const { element, html, templateId, hint, mid } = result;
+      const { html, templateId, hint, mid, handler } = result;
+      const element = $.getLiveElement(result.element, handler);
+      if (!element) {
+        return;
+      }
+      result.element = element;
 
       element.insertAdjacentHTML('afterend', html);
       const templateIdEle = document.querySelector("div[id='" + templateId + "']");
@@ -36830,7 +36872,12 @@
     };
 
     this.detailMscanAnalyze = function (result) {
-      const { element, html, qrcodeData, canvasId } = result;
+      const { html, qrcodeData, canvasId, handler } = result;
+      const element = $.getLiveElement(result.element, handler);
+      if (!element) {
+        return;
+      }
+      result.element = element;
 
       element.insertAdjacentHTML('afterend', html);
       if (!!qrcodeData && qrcodeData.code === "success" && !!qrcodeData.result) {
@@ -37081,7 +37128,7 @@
 
         ext.logger("info", "EbayHelper", "detailAnalyze", "coupon insert: element", element);
         if (element) {
-          couponResult = { "element": element, "html": html, "templateId": templateId, "distinguish": distinguish, "hint": hint, "mid": mid };
+          couponResult = { "element": element, "html": html, "templateId": templateId, "distinguish": distinguish, "hint": hint, "mid": mid, "handler": handler };
         }
       }
 
@@ -37111,7 +37158,7 @@
 
         ext.logger("info", "EbayHelper", "detailAnalyze", "qrcode insert: element", element);
         if (element && qrcodeData) {
-          qrcodeResult = { "element": element, "html": html, "canvasId": canvasId, "qrcodeData": qrcodeData, "distinguish": distinguish };
+          qrcodeResult = { "element": element, "html": html, "canvasId": canvasId, "qrcodeData": qrcodeData, "distinguish": distinguish, "handler": handler };
         }
       }
 
@@ -37130,7 +37177,12 @@
     };
 
     this.detailCouponAnalyze = function (result) {
-      const { element, html, templateId, hint, mid } = result;
+      const { html, templateId, hint, mid, handler } = result;
+      const element = $.getLiveElement(result.element, handler);
+      if (!element) {
+        return;
+      }
+      result.element = element;
 
       element.insertAdjacentHTML('afterend', html);
       const templateIdEle = document.querySelector("div[id='" + templateId + "']");
@@ -37162,7 +37214,12 @@
     };
 
     this.detailMscanAnalyze = function (result) {
-      const { element, html, qrcodeData, canvasId } = result;
+      const { html, qrcodeData, canvasId, handler } = result;
+      const element = $.getLiveElement(result.element, handler);
+      if (!element) {
+        return;
+      }
+      result.element = element;
 
       element.insertAdjacentHTML('afterend', html);
       if (!!qrcodeData && qrcodeData.code === "success" && !!qrcodeData.result) {

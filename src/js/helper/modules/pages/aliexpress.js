@@ -155,7 +155,7 @@
 
                     ext.logger("info", "AliexpressHelper", "detailAnalyze", "coupon insert: element", element);
                     if(element){
-                        couponResult = {"element":element, "html":html, "templateId":templateId, "distinguish":distinguish, "hint":hint}
+                        couponResult = {"element":element, "html":html, "templateId":templateId, "distinguish":distinguish, "hint":hint, "handler":handler}
                     }
                 }
             
@@ -188,7 +188,7 @@
             
                     ext.logger("info", "AliexpressHelper", "detailAnalyze", "qrcode insert: element", element);
                     if(element && qrcodeData){
-                        qrcodeResult = {"element":element, "html":html, "canvasId":canvasId, "qrcodeData":qrcodeData,"distinguish":distinguish}
+                        qrcodeResult = {"element":element, "html":html, "canvasId":canvasId, "qrcodeData":qrcodeData,"distinguish":distinguish, "handler":handler}
                     }
                 }
                 
@@ -215,7 +215,12 @@
 
 
         this.detailCouponAnalyze = (result) =>{
-            const {element, html, templateId, hint} = result;
+            const {html, templateId, hint, handler} = result;
+            const element = $.getLiveElement(result.element, handler);
+            if(!element){
+                return;
+            }
+            result.element = element;
 
             element.insertAdjacentHTML('afterend', html);
             const templateIdEle = document.querySelector("div[id='"+templateId+"']");
@@ -233,7 +238,12 @@
         };
 
         this.detailMscanAnalyze = (result) =>{
-            const {element, html, qrcodeData, canvasId} = result;
+            const {html, qrcodeData, canvasId, handler} = result;
+            const element = $.getLiveElement(result.element, handler);
+            if(!element){
+                return;
+            }
+            result.element = element;
 
             element.insertAdjacentHTML('afterend', html);
             if(!!qrcodeData && qrcodeData.code==="success" && !!qrcodeData.result){
@@ -300,11 +310,14 @@
             ext.logger("info", "AliexpressHelper", "tradeAnalyze", "insert: element", element);
         
             ext.helper.util.loopTask(()=>{
-                if(!element){
-                    return;
-                }
                 ext.helper.util.distinguishRemoveAndTry(distinguish, ()=>{
-                    element.insertAdjacentHTML('afterend', html);
+                    const liveElement = $.getLiveElement(element, handler);
+                    if(!liveElement){
+                        return;
+                    }
+                    element = liveElement;
+
+                    liveElement.insertAdjacentHTML('afterend', html);
                     const templateIdEle = document.querySelector("#"+templateId+">.item");
                     if(templateIdEle){
                         const promoCode = ext.helper.util.decryptStr(templateIdEle.querySelector(".copy").getAttribute("data-encryptcode"));
