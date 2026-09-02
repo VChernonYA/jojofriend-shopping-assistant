@@ -16,8 +16,7 @@
         };
 
         const getActivateTop = () => {
-            const defaultTop = ext.helper.dao.getDefaults().p.logoTop;
-            let top = ext.helper.dao.getData($.opts.storageKeys.position.logoTop, defaultTop);
+            let top = ext.helper.dao.getData($.opts.storageKeys.position.logoTop, true);
             const maxTop = window.innerHeight - MIN_ACTIVATE_WIDGET_TOP;
             return Math.min(Math.max(top, 0), maxTop);
         };

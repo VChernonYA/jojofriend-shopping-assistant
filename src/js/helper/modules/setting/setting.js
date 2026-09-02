@@ -140,7 +140,7 @@
         this.showDialog = async (callback) => {
             const defaults = ext.helper.dao.getDefaults().h;
             const { number_min, number_max } = defaults;
-            const currentNumber = ext.helper.dao.getData($.opts.storageKeys.history.number, defaults.number);
+            const currentNumber = ext.helper.dao.getData($.opts.storageKeys.history.number, true);
 
             const languageInfos = await ext.helper.dao.call("languageInfos");
             ext.logger("info", "SettingHelper", "initSettingDialog", "setting dialog language >", languageInfos);

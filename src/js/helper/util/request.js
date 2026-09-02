@@ -27,7 +27,7 @@
 
         const getBaseParams = async () => {
             const eId = await ext.helper.dao.getEid();
-            const token = ext.helper.dao.getData($.opts.storageKeys.website.token, "");
+            const token = ext.helper.dao.getData($.opts.storageKeys.website.token, true);
             const params = {
                 v: $.opts.apiVersion,
                 version: $.opts.apiVersion,
@@ -240,6 +240,7 @@
         const getDetectDataParams = async () => {
             const platform = platformConfig.platformId;
             const { marketplace, currency } = await getDynamicParams(platform);
+            const brandKeys =  Object.keys(ext.helper.dao.getData($.opts.storageKeys.brands.logos, true));
             let lang = ext.helper.i18n.getLanguage();
             if (lang === "default") {
                 lang = $.opts.manifest.default_locale;
@@ -249,7 +250,8 @@
                 url: window.location.href,
                 lang,
                 marketplace,
-                currency
+                currency,
+                cachedLogos:brandKeys
             };
             const baseParams = await getBaseParams();
             return Object.assign({}, params, baseParams);
@@ -293,7 +295,7 @@
                 const now = Date.now();
                 let exchangeInfoLocal = ext.helper.dao.getData(
                     $.opts.storageKeys.website.exchangeInfo,
-                    null
+                    true
                 );
                 
                 ext.logger("info", "RequestHelper", "initRequestData", "local=====>", exchangeInfoLocal, $.opts.updateExchangeInfoDelay);

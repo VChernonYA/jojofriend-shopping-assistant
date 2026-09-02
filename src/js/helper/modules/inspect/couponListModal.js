@@ -163,6 +163,51 @@
             return error;
         };
 
+        const saveOrUpdateBrandLogos = (brands) => {
+            if (!Array.isArray(brands) || brands.length === 0) {
+                return;
+            }
+
+            const MAX_CACHED_LOGOS = 100;
+            const storedLogos = ext.helper.dao.getData($.opts.storageKeys.brands.logos, true);
+            const storedOrder = ext.helper.dao.getData($.opts.storageKeys.brands.order, true);
+            const logos = Object.assign({}, (storedLogos && typeof storedLogos === "object") ? storedLogos : {});
+            let order = Array.isArray(storedOrder) ? storedOrder.filter((key) => !!logos[key]) : [];
+
+            for (const brand of brands) {
+                if (!brand || !brand.logo) {
+                    continue;
+                }
+                const key = brand.logo;
+                if (brand.logoBase64) {
+                    logos[key] = brand.logoBase64;
+                } else {
+                    brand.logoBase64 = logos[key] || "";
+                }
+                if (!brand.logoBase64) {
+                    continue;
+                }
+                order = order.filter((item) => item !== key);
+                order.push(key);
+            }
+
+            while (order.length > MAX_CACHED_LOGOS) {
+                const evictKey = order.shift();
+                delete logos[evictKey];
+            }
+            Object.keys(logos).forEach((key) => {
+                if (!order.includes(key)) {
+                    delete logos[key];
+                }
+            });
+
+            ext.logger("info", "CouponListModalHelper", "saveOrUpdateBrandLogos", "size", order.length);
+            ext.helper.dao.setData({
+                [$.opts.storageKeys.brands.logos]: logos,
+                [$.opts.storageKeys.brands.order]: order
+            });
+        }
+
         const setCouponsHtml =  async (modal, icons) => {
             const {outerDIV} = this._container;
             const modalBody = modal.querySelector("div[name='modalBody']");
@@ -186,6 +231,7 @@
                 requestStateBox.remove();  //Success removes the entire prompt node.
 
                 ext.logger("info", "CouponListModalHelper", "getDetectDataResult", dataJson);
+                saveOrUpdateBrandLogos(dataJson.brands || [])
                 const { css, html, names } = await detectCouponListTemplate.generate(dataJson);
 
                 if(!!css && !!html){    

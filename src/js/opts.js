@@ -51,6 +51,10 @@
             website:{
                 token:"w/userToken",
                 exchangeInfo:"w/exchangeInfo"
+            },
+            brands:{
+                logos:"b/logos",
+                order:"b/order",
             }
         },
         featureToggleKeys: {

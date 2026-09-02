@@ -11,7 +11,8 @@
             { name: "position", alias: "p" },
             { name: "setting", alias: "s" },
             { name: "history", alias: "h" },
-            { name: "website", alias: "w" }
+            { name: "website", alias: "w" },
+            { name: "brands", alias: "b" }
         ];
 
         const defaults = {
@@ -34,6 +35,10 @@
                     certificate: "",
                     redirect: ""
                 }
+            },
+            b: {
+                logos: {},
+                order: []
             }
         };
 
@@ -207,7 +212,8 @@
                             position: data.position,
                             setting: data.setting,
                             history: data.history,
-                            website: data.website
+                            website: data.website,
+                            brands: data.brands
                         }, () => {
                             const error = $.api.runtime.lastError;
                             if (error && error.message) {}

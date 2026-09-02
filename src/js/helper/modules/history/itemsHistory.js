@@ -13,12 +13,12 @@
          * @type {object}
          */
         const api = {
-            getRecord: () => ext.helper.dao.getData(keys.history.record, ext.helper.dao.getDefaults().h.record),
-            getNumber: () => ext.helper.dao.getData(keys.history.number, ext.helper.dao.getDefaults().h.number),
-            getOffset: () => ext.helper.dao.getData(keys.history.offset, ext.helper.dao.getDefaults().h.offset),
+            getRecord: () => ext.helper.dao.getData(keys.history.record, true),
+            getNumber: () => ext.helper.dao.getData(keys.history.number, true),
+            getOffset: () => ext.helper.dao.getData(keys.history.offset, true),
             getOffsetDefault: () => ext.helper.dao.getDefaults().h.offset,
             getToolbarNumber: () => ext.helper.dao.getDefaults().h.toolbar_number,
-            getExchangeInfo: () => ext.helper.dao.getData(keys.website.exchangeInfo, ext.helper.dao.getDefaults().w.exchangeInfo),
+            getExchangeInfo: () => ext.helper.dao.getData(keys.website.exchangeInfo, true),
             saveRecord: (record) => ext.helper.dao.setDataByKey(keys.history.record, record),
             saveOffset: (offset) => ext.helper.dao.setDataByKey(keys.history.offset, offset),
             openLink: (encryptedHref) => ext.helper.util.openInTab(ext.helper.util.decryptStr(encryptedHref)),
