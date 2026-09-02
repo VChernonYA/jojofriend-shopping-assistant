@@ -240,7 +240,6 @@
         const getDetectDataParams = async () => {
             const platform = platformConfig.platformId;
             const { marketplace, currency } = await getDynamicParams(platform);
-            const brandKeys =  Object.keys(ext.helper.dao.getData($.opts.storageKeys.brands.logos, true));
             let lang = ext.helper.i18n.getLanguage();
             if (lang === "default") {
                 lang = $.opts.manifest.default_locale;
@@ -250,8 +249,7 @@
                 url: window.location.href,
                 lang,
                 marketplace,
-                currency,
-                cachedLogos:brandKeys
+                currency
             };
             const baseParams = await getBaseParams();
             return Object.assign({}, params, baseParams);
@@ -271,7 +269,10 @@
          * Get coupon list
          */
         this.getDetectDataResult = async function () {
-            const params = await getDetectDataParams();
+            const brandKeys =  Object.keys(ext.helper.dao.getData($.opts.storageKeys.brands.logos, true));
+            const params = await getDetectDataParams() || {};
+            params.cachedLogos = brandKeys;
+
             const { method, url } = urls.detectData;
             ext.logger("info", "RequestHelper", "getDetectDataResult", "detect coupon result params===========>", method, url, JSON.stringify(params));
             return callRequestResolveJson({ url, method, params });
