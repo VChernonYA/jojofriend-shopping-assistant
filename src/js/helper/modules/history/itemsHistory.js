@@ -18,7 +18,7 @@
             getOffset: () => ext.helper.dao.getData(keys.history.offset, true),
             getOffsetDefault: () => ext.helper.dao.getDefaults().h.offset,
             getToolbarNumber: () => ext.helper.dao.getDefaults().h.toolbar_number,
-            getExchangeInfo: () => ext.helper.dao.getData(keys.website.exchangeInfo, true),
+            getExchangeInfo: () => ext.helper.dao.getData(keys.website.exchangeInfo, false),
             saveRecord: (record) => ext.helper.dao.setDataByKey(keys.history.record, record),
             saveOffset: (offset) => ext.helper.dao.setDataByKey(keys.history.offset, offset),
             openLink: (encryptedHref) => ext.helper.util.openInTab(ext.helper.util.decryptStr(encryptedHref)),
@@ -174,8 +174,8 @@
         };
 
         this.pretreatmentJumpUrl = (url, platform) => {
-            const { redirect } = api.getExchangeInfo();
-            return api.encryptStr(redirect + encodeURIComponent(url));
+            const { redirect } = api.getExchangeInfo() || {};
+            return api.encryptStr((redirect || "") + encodeURIComponent(url));
         };
 
         this.pretreatmentImageUrl = (imgUrl, platform) => {

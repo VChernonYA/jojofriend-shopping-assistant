@@ -1512,6 +1512,10 @@
       website: {
         token: "w/userToken",
         exchangeInfo: "w/exchangeInfo"
+      },
+      brands: {
+        logos: "b/logos",
+        order: "b/order"
       }
     },
     featureToggleKeys: {
@@ -2173,7 +2177,7 @@
                     "keywords": [
                         "tiktok"
                     ],
-                    "urlMatch": "^https:\\\\/\\\\/(ads|getstarted)\\\\.tiktok\\\\.com.*?\\\\/[Bb]usiness.*([/?#].*)?$",
+                    "urlMatch": "^https:\\\\/\\\\/(ads|getstarted)\\\\.tiktok\\\\.com.*?\\\\/.*([/?#].*)?$",
                     "historyRecord": {
                         "disabled": true
                     },
@@ -34156,6 +34160,278 @@
                         "disabled": true
                     },
                     "disabled": false
+                },
+                "sheglam": {
+                    "platformId": "sheglam",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?sheglam\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "appsbd": {
+                    "platformId": "appsbd",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?appsbd\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "redtop": {
+                    "platformId": "redtop",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?redtop\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "thelarosa": {
+                    "platformId": "thelarosa",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?thelarosa\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "sweetmyo": {
+                    "platformId": "sweetmyo",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?sweetmyo\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "woodestic": {
+                    "platformId": "woodestic",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?woodestic\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "gardenmart24": {
+                    "platformId": "gardenmart24",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?gardenmart24\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "unode50": {
+                    "platformId": "unode50",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?unode50\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "trasmed": {
+                    "platformId": "trasmed",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?trasmed\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "zwilling": {
+                    "platformId": "zwilling",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?zwilling\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "testclear": {
+                    "platformId": "testclear",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?testclear\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "totalgymdirect": {
+                    "platformId": "totalgymdirect",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?totalgymdirect\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "frontier": {
+                    "platformId": "frontier",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?frontier\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "aceable": {
+                    "platformId": "aceable",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?aceable\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "klevgrand": {
+                    "platformId": "klevgrand",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?klevgrand\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "traumpreisfabrik": {
+                    "platformId": "traumpreisfabrik",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?traumpreisfabrik\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "selectumllc": {
+                    "platformId": "selectumllc",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?selectumllc\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "ultimea": {
+                    "platformId": "ultimea",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?ultimea\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "cohorted": {
+                    "platformId": "cohorted",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?cohorted\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "longer": {
+                    "platformId": "longer",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?longer\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "epilynx": {
+                    "platformId": "epilynx",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?epilynx\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "growattportable": {
+                    "platformId": "growattportable",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?growattportable\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "everydayblinds": {
+                    "platformId": "everydayblinds",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?everydayblinds\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "vuzimo": {
+                    "platformId": "vuzimo",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?vuzimo\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "wildatheart": {
+                    "platformId": "wildatheart",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?wildatheart\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "magidglove": {
+                    "platformId": "magidglove",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?magidglove\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "originalpenguin": {
+                    "platformId": "originalpenguin",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?originalpenguin\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "joybuy": {
+                    "platformId": "joybuy",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?joybuy\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "theholister": {
+                    "platformId": "theholister",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?theholister\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "zerobreeze": {
+                    "platformId": "zerobreeze",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?zerobreeze\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "victoriassecret": {
+                    "platformId": "victoriassecret",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?victoriassecret\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "bikeathletic": {
+                    "platformId": "bikeathletic",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?bikeathletic\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "staplespromo": {
+                    "platformId": "staplespromo",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?staplespromo\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
+                },
+                "ugg": {
+                    "platformId": "ugg",
+                    "urlMatch": "^https:\\\\/\\\\/([\\\\w-]+\\\\.)?ugg\\\\.[\\\\w.-]+([/?#].*)?$",
+                    "historyRecord": {
+                        "disabled": true
+                    },
+                    "disabled": false
                 }
             }
         `;
@@ -34251,12 +34527,12 @@
      * @type {object}
      */
     const api = {
-      getRecord: () => ext.helper.dao.getData(keys.history.record, ext.helper.dao.getDefaults().h.record),
-      getNumber: () => ext.helper.dao.getData(keys.history.number, ext.helper.dao.getDefaults().h.number),
-      getOffset: () => ext.helper.dao.getData(keys.history.offset, ext.helper.dao.getDefaults().h.offset),
+      getRecord: () => ext.helper.dao.getData(keys.history.record, true),
+      getNumber: () => ext.helper.dao.getData(keys.history.number, true),
+      getOffset: () => ext.helper.dao.getData(keys.history.offset, true),
       getOffsetDefault: () => ext.helper.dao.getDefaults().h.offset,
       getToolbarNumber: () => ext.helper.dao.getDefaults().h.toolbar_number,
-      getExchangeInfo: () => ext.helper.dao.getData(keys.website.exchangeInfo, ext.helper.dao.getDefaults().w.exchangeInfo),
+      getExchangeInfo: () => ext.helper.dao.getData(keys.website.exchangeInfo, false),
       saveRecord: (record) => ext.helper.dao.setDataByKey(keys.history.record, record),
       saveOffset: (offset) => ext.helper.dao.setDataByKey(keys.history.offset, offset),
       openLink: (encryptedHref) => ext.helper.util.openInTab(ext.helper.util.decryptStr(encryptedHref)),
@@ -34412,8 +34688,8 @@
     };
 
     this.pretreatmentJumpUrl = (url, platform) => {
-      const { redirect } = api.getExchangeInfo();
-      return api.encryptStr(redirect + encodeURIComponent(url));
+      const { redirect } = api.getExchangeInfo() || {};
+      return api.encryptStr((redirect || "") + encodeURIComponent(url));
     };
 
     this.pretreatmentImageUrl = (imgUrl, platform) => {
@@ -34732,8 +35008,7 @@
     };
 
     const getActivateTop = () => {
-      const defaultTop = ext.helper.dao.getDefaults().p.logoTop;
-      let top = ext.helper.dao.getData($.opts.storageKeys.position.logoTop, defaultTop);
+      let top = ext.helper.dao.getData($.opts.storageKeys.position.logoTop, true);
       const maxTop = window.innerHeight - MIN_ACTIVATE_WIDGET_TOP;
       return Math.min(Math.max(top, 0), maxTop);
     };
@@ -35207,6 +35482,51 @@
       return error;
     };
 
+    const saveOrUpdateBrandLogos = (brands) => {
+      if (!Array.isArray(brands) || brands.length === 0) {
+        return;
+      }
+
+      const MAX_CACHED_LOGOS = 100;
+      const storedLogos = ext.helper.dao.getData($.opts.storageKeys.brands.logos, true);
+      const storedOrder = ext.helper.dao.getData($.opts.storageKeys.brands.order, true);
+      const logos = Object.assign({}, storedLogos && typeof storedLogos === "object" ? storedLogos : {});
+      let order = Array.isArray(storedOrder) ? storedOrder.filter((key) => !!logos[key]) : [];
+
+      for (const brand of brands) {
+        if (!brand || !brand.logo) {
+          continue;
+        }
+        const key = brand.logo;
+        if (brand.logoBase64) {
+          logos[key] = brand.logoBase64;
+        } else {
+          brand.logoBase64 = logos[key] || "";
+        }
+        if (!brand.logoBase64) {
+          continue;
+        }
+        order = order.filter((item) => item !== key);
+        order.push(key);
+      }
+
+      while (order.length > MAX_CACHED_LOGOS) {
+        const evictKey = order.shift();
+        delete logos[evictKey];
+      }
+      Object.keys(logos).forEach((key) => {
+        if (!order.includes(key)) {
+          delete logos[key];
+        }
+      });
+
+      ext.logger("info", "CouponListModalHelper", "saveOrUpdateBrandLogos", "size", order.length);
+      ext.helper.dao.setData({
+        [$.opts.storageKeys.brands.logos]: logos,
+        [$.opts.storageKeys.brands.order]: order
+      });
+    };
+
     const setCouponsHtml = async (modal, icons) => {
       const { outerDIV } = this._container;
       const modalBody = modal.querySelector("div[name='modalBody']");
@@ -35230,6 +35550,7 @@
         requestStateBox.remove(); //Success removes the entire prompt node.
 
         ext.logger("info", "CouponListModalHelper", "getDetectDataResult", dataJson);
+        saveOrUpdateBrandLogos(dataJson.brands || []);
         const { css, html, names } = await detectCouponListTemplate.generate(dataJson);
 
         if (!!css && !!html) {
@@ -37567,7 +37888,7 @@
     this.showDialog = async (callback) => {
       const defaults = ext.helper.dao.getDefaults().h;
       const { number_min, number_max } = defaults;
-      const currentNumber = ext.helper.dao.getData($.opts.storageKeys.history.number, defaults.number);
+      const currentNumber = ext.helper.dao.getData($.opts.storageKeys.history.number, true);
 
       const languageInfos = await ext.helper.dao.call("languageInfos");
       ext.logger("info", "SettingHelper", "initSettingDialog", "setting dialog language >", languageInfos);
@@ -39471,7 +39792,8 @@
     { name: "position", alias: "p" },
     { name: "setting", alias: "s" },
     { name: "history", alias: "h" },
-    { name: "website", alias: "w" }];
+    { name: "website", alias: "w" },
+    { name: "brands", alias: "b" }];
 
 
     const defaults = {
@@ -39490,10 +39812,11 @@
       w: {
         supportObj: null,
         userToken: "",
-        exchangeInfo: {
-          certificate: "",
-          redirect: ""
-        }
+        exchangeInfo: null
+      },
+      b: {
+        logos: {},
+        order: []
       }
     };
 
@@ -39667,7 +39990,8 @@
               position: data.position,
               setting: data.setting,
               history: data.history,
-              website: data.website
+              website: data.website,
+              brands: data.brands
             }, () => {
               const error = $.api.runtime.lastError;
               if (error && error.message) {}
@@ -40304,7 +40628,7 @@
 
     const getBaseParams = async () => {
       const eId = await ext.helper.dao.getEid();
-      const token = ext.helper.dao.getData($.opts.storageKeys.website.token, "");
+      const token = ext.helper.dao.getData($.opts.storageKeys.website.token, false);
       const params = {
         v: $.opts.apiVersion,
         version: $.opts.apiVersion,
@@ -40546,7 +40870,10 @@
      * Get coupon list
      */
     this.getDetectDataResult = async function () {
-      const params = await getDetectDataParams();
+      const brandKeys = Object.keys(ext.helper.dao.getData($.opts.storageKeys.brands.logos, true));
+      const params = (await getDetectDataParams()) || {};
+      params.cachedLogos = brandKeys;
+
       const { method, url } = urls.detectData;
       ext.logger("info", "RequestHelper", "getDetectDataResult", "detect coupon result params===========>", method, url, JSON.stringify(params));
       return callRequestResolveJson({ url, method, params });
@@ -40568,10 +40895,7 @@
     this.initRequestData = async () => {
       try {
         const now = Date.now();
-        let exchangeInfoLocal = ext.helper.dao.getData(
-          $.opts.storageKeys.website.exchangeInfo,
-          null
-        );
+        let exchangeInfoLocal = ext.helper.dao.getData($.opts.storageKeys.website.exchangeInfo, false);
 
         ext.logger("info", "RequestHelper", "initRequestData", "local=====>", exchangeInfoLocal, $.opts.updateExchangeInfoDelay);
         const needFetchConfig = !exchangeInfoLocal || exchangeInfoLocal.time && now - exchangeInfoLocal.time > $.opts.updateExchangeInfoDelay;

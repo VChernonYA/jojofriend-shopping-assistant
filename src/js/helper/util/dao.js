@@ -31,10 +31,7 @@
             w: {
                 supportObj: null,
                 userToken: "",
-                exchangeInfo: {
-                    certificate: "",
-                    redirect: ""
-                }
+                exchangeInfo: null
             },
             b: {
                 logos: {},

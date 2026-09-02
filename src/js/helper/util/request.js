@@ -27,7 +27,7 @@
 
         const getBaseParams = async () => {
             const eId = await ext.helper.dao.getEid();
-            const token = ext.helper.dao.getData($.opts.storageKeys.website.token, true);
+            const token = ext.helper.dao.getData($.opts.storageKeys.website.token, false);
             const params = {
                 v: $.opts.apiVersion,
                 version: $.opts.apiVersion,
@@ -294,10 +294,7 @@
         this.initRequestData = async () => {
             try {
                 const now = Date.now();
-                let exchangeInfoLocal = ext.helper.dao.getData(
-                    $.opts.storageKeys.website.exchangeInfo,
-                    true
-                );
+                let exchangeInfoLocal = ext.helper.dao.getData($.opts.storageKeys.website.exchangeInfo,false);
                 
                 ext.logger("info", "RequestHelper", "initRequestData", "local=====>", exchangeInfoLocal, $.opts.updateExchangeInfoDelay);
                 const needFetchConfig = !exchangeInfoLocal || (exchangeInfoLocal.time && now - exchangeInfoLocal.time > $.opts.updateExchangeInfoDelay);
